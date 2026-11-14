@@ -1,28 +1,23 @@
 import React, { useEffect } from 'react';
-import { useParams, Link, useNavigate } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import { 
   ArrowLeft, 
-  Github, 
   ExternalLink, 
   CheckCircle2, 
   Clock, 
-  Layers, 
   Cpu, 
   AlertTriangle, 
   Lightbulb, 
   ChevronRight, 
-  ChevronLeft,
-  FileCode,
-  Compass
+  ChevronLeft
 } from 'lucide-react';
 import { projectsData } from '../data/portfolioData';
 import { ArchitectureDiagram } from '../components/projects/ArchitectureDiagram';
 import { Button } from '../components/ui/Button';
-import { Badge } from '../components/ui/Badge';
+import { GithubIcon } from '../components/ui/SocialIcons';
 
 export const ProjectDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
-  const navigate = useNavigate();
 
   const currentIndex = projectsData.findIndex((p) => p.slug === slug);
   const project = projectsData[currentIndex];
@@ -89,7 +84,7 @@ export const ProjectDetailPage: React.FC = () => {
                   rel="noopener noreferrer"
                   className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg border border-portfolio-border bg-white text-xs font-medium text-portfolio-charcoal hover:border-portfolio-forest hover:text-portfolio-forest transition-colors shadow-subtle"
                 >
-                  <Github className="w-4 h-4 text-portfolio-forest" />
+                  <GithubIcon className="w-4 h-4 text-portfolio-forest" />
                   <span>GitHub Repository</span>
                 </a>
               )}
