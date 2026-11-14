@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { Menu, X, FileText } from 'lucide-react';
-import { Button } from '../ui/Button';
+import { useLocation, useNavigate } from 'react-router-dom';
+import { Menu, X, FileText, ArrowRight } from 'lucide-react';
+import { navigationConfig } from '../../config/navigation';
+import { Button } from '../common/Button';
 
 interface NavbarProps {
   onOpenResume: () => void;
@@ -10,41 +11,54 @@ interface NavbarProps {
 export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('hero');
   const location = useLocation();
   const navigate = useNavigate();
 
   const isHomePage = location.pathname === '/';
 
+  // Sticky navbar shadow and active section scroll detection
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 20);
+      setScrolled(window.scrollY > 15);
+
+      // Simple active section detection based on scroll position
+      const sections = navigationConfig.links.map((link) => link.sectionId);
+      const scrollPosition = window.scrollY + 120;
+
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const element = document.getElementById(sections[i]);
+        if (element && element.offsetTop <= scrollPosition) {
+          setActiveSection(sections[i]);
+          break;
+        }
+      }
     };
+
     window.addEventListener('scroll', handleScroll, { passive: true });
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // Lock scroll when mobile menu is open
+  // Keyboard accessibility: Close mobile drawer on Escape key
   useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Escape' && mobileMenuOpen) {
+        setMobileMenuOpen(false);
+      }
+    };
+
     if (mobileMenuOpen) {
       document.body.style.overflow = 'hidden';
+      window.addEventListener('keydown', handleKeyDown);
     } else {
       document.body.style.overflow = 'unset';
     }
+
     return () => {
       document.body.style.overflow = 'unset';
+      window.removeEventListener('keydown', handleKeyDown);
     };
   }, [mobileMenuOpen]);
-
-  const navLinks = [
-    { name: 'Home', href: '#hero', sectionId: 'hero' },
-    { name: 'About', href: '#about', sectionId: 'about' },
-    { name: 'Skills', href: '#skills', sectionId: 'skills' },
-    { name: 'Projects', href: '#projects', sectionId: 'projects' },
-    { name: 'Experience', href: '#experience', sectionId: 'experience' },
-    { name: 'Achievements', href: '#achievements', sectionId: 'achievements' },
-    { name: 'Education', href: '#education', sectionId: 'education' },
-    { name: 'Contact', href: '#contact', sectionId: 'contact' },
-  ];
 
   const handleNavClick = (e: React.MouseEvent<HTMLAnchorElement>, sectionId: string) => {
     e.preventDefault();
@@ -53,7 +67,14 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
     if (isHomePage) {
       const element = document.getElementById(sectionId);
       if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
+        const navOffset = 76;
+        const elementPosition = element.getBoundingClientRect().top;
+        const offsetPosition = elementPosition + window.pageYOffset - navOffset;
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: 'smooth',
+        });
       }
     } else {
       navigate(`/#${sectionId}`);
@@ -64,116 +85,130 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
     <header
       className={`sticky top-0 z-40 transition-all duration-200 ${
         scrolled
-          ? 'bg-[#F7F7F2]/95 backdrop-blur-md shadow-subtle border-b border-portfolio-border'
-          : 'bg-[#F7F7F2] border-b border-portfolio-border/60'
+          ? 'bg-[#F7F7F2]/95 backdrop-blur-md border-b border-portfolio-border shadow-subtle'
+          : 'bg-[#F7F7F2] border-b border-portfolio-border/70'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-[1240px] mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 sm:h-20">
-          {/* Typographic Logo */}
-          <Link 
-            to="/" 
-            className="group flex items-center gap-2.5 focus:outline-none"
-            aria-label="Atharva Vaddepalli - Home"
+          
+          {/* Brand Wordmark Treatment: "ATHARVA." */}
+          <a
+            href="#hero"
+            onClick={(e) => handleNavClick(e, 'hero')}
+            className="group flex items-center gap-1.5 focus:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-forest rounded p-1"
+            aria-label="Atharva Vaddepalli — Return to top"
           >
-            <span className="w-8 h-8 rounded-lg bg-portfolio-forest text-portfolio-bg flex items-center justify-center font-mono font-bold text-sm tracking-tight shadow-subtle group-hover:bg-portfolio-forest-hover transition-colors">
-              AV
+            <span className="text-xl sm:text-2xl font-bold tracking-tight text-portfolio-charcoal group-hover:text-portfolio-forest transition-colors font-sans">
+              ATHARVA<span className="text-portfolio-forest font-black">.</span>
             </span>
-            <div className="flex flex-col">
-              <span className="text-sm sm:text-base font-bold tracking-tight text-portfolio-forest group-hover:text-portfolio-forest-hover transition-colors">
-                ATHARVA VADDEPALLI
-              </span>
-              <span className="text-[10px] sm:text-xs text-portfolio-muted font-mono tracking-wider">
-                BACKEND & AI/ML
-              </span>
-            </div>
-          </Link>
+          </a>
 
           {/* Desktop Navigation Links */}
           <nav className="hidden lg:flex items-center gap-1 xl:gap-2" aria-label="Main Navigation">
-            {navLinks.map((link) => (
-              <a
-                key={link.name}
-                href={link.href}
-                onClick={(e) => handleNavClick(e, link.sectionId)}
-                className="px-3 py-1.5 text-xs xl:text-sm font-medium text-portfolio-charcoal hover:text-portfolio-forest rounded-md hover:bg-portfolio-sage-light/40 transition-colors"
-              >
-                {link.name}
-              </a>
-            ))}
-          </nav>
-
-          {/* Action CTAs */}
-          <div className="hidden sm:flex items-center gap-3">
-            <Button
-              variant="secondary"
-              size="sm"
-              onClick={onOpenResume}
-              icon={<FileText className="w-3.5 h-3.5 text-portfolio-forest" />}
-            >
-              Resume
-            </Button>
-            <Button
-              variant="primary"
-              size="sm"
-              to={isHomePage ? '#contact' : '/#contact'}
-              onClick={(e?: React.MouseEvent<HTMLElement>) => {
-                if (isHomePage && e) {
-                  e.preventDefault();
-                  document.getElementById('contact')?.scrollIntoView({ behavior: 'smooth' });
-                }
-              }}
-            >
-              Get in Touch
-            </Button>
-          </div>
-
-          {/* Mobile Menu Hamburger Button */}
-          <div className="flex items-center gap-2 sm:hidden">
-            <button
-              onClick={onOpenResume}
-              className="p-2 text-portfolio-forest hover:bg-portfolio-sage-light/50 rounded-lg border border-portfolio-border text-xs font-medium inline-flex items-center gap-1"
-              aria-label="View Resume"
-            >
-              <FileText className="w-4 h-4" />
-            </button>
-            <button
-              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-              className="p-2.5 rounded-lg text-portfolio-charcoal hover:text-portfolio-forest hover:bg-portfolio-sage-light/50 border border-portfolio-border transition-colors focus:outline-none focus:ring-2 focus:ring-portfolio-forest"
-              aria-label={mobileMenuOpen ? 'Close Navigation Menu' : 'Open Navigation Menu'}
-              aria-expanded={mobileMenuOpen}
-            >
-              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
-            </button>
-          </div>
-        </div>
-      </div>
-
-      {/* Mobile Drawer Menu */}
-      {mobileMenuOpen && (
-        <div className="fixed inset-0 top-16 z-50 lg:hidden bg-portfolio-charcoal/40 backdrop-blur-sm animate-fadeIn">
-          <div 
-            className="bg-[#F7F7F2] border-b border-portfolio-border shadow-xl px-5 py-6 space-y-4 max-h-[85vh] overflow-y-auto"
-            onClick={(e) => e.stopPropagation()}
-          >
-            <div className="text-xs font-mono uppercase tracking-widest text-portfolio-muted pb-2 border-b border-portfolio-border">
-              Navigation Menu
-            </div>
-            <div className="grid grid-cols-1 gap-1">
-              {navLinks.map((link) => (
+            {navigationConfig.links.map((link) => {
+              const isActive = activeSection === link.sectionId;
+              return (
                 <a
                   key={link.name}
                   href={link.href}
                   onClick={(e) => handleNavClick(e, link.sectionId)}
-                  className="px-4 py-3 text-base font-medium text-portfolio-charcoal hover:text-portfolio-forest hover:bg-portfolio-sage-light/50 rounded-lg transition-colors flex items-center justify-between"
+                  className={`px-3 py-1.5 text-xs xl:text-sm font-medium rounded-md transition-colors relative ${
+                    isActive
+                      ? 'text-portfolio-forest font-semibold bg-portfolio-sage-light/60'
+                      : 'text-portfolio-charcoal/80 hover:text-portfolio-forest hover:bg-portfolio-sage-light/40'
+                  }`}
                 >
-                  <span>{link.name}</span>
-                  <span className="text-portfolio-muted font-mono text-xs">→</span>
+                  {link.name}
+                  {isActive && (
+                    <span className="absolute bottom-0 left-3 right-3 h-0.5 bg-portfolio-forest rounded-full" />
+                  )}
                 </a>
-              ))}
+              );
+            })}
+          </nav>
+
+          {/* Right Action: Resume Button & Mobile Menu Toggle */}
+          <div className="flex items-center gap-2 sm:gap-3">
+            {/* Desktop / Tablet Resume Button */}
+            <div className="hidden sm:flex items-center">
+              <Button
+                variant="secondary"
+                size="sm"
+                onClick={onOpenResume}
+                icon={<FileText className="w-3.5 h-3.5 text-portfolio-forest" />}
+              >
+                {navigationConfig.resumeButtonText}
+              </Button>
             </div>
 
-            <div className="pt-4 border-t border-portfolio-border flex flex-col gap-2.5">
+            {/* Mobile Compact Resume Button */}
+            <button
+              onClick={onOpenResume}
+              className="sm:hidden px-2.5 py-1.5 text-portfolio-forest hover:bg-portfolio-sage-light/50 rounded-lg border border-portfolio-border text-xs font-medium inline-flex items-center gap-1 min-h-[38px] focus:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-forest"
+              aria-label="Open Resume Preview"
+            >
+              <FileText className="w-3.5 h-3.5" />
+              <span>Resume</span>
+            </button>
+
+            {/* Mobile / Tablet Hamburger Toggle (Visible on all screens below lg) */}
+            <button
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden p-2.5 rounded-lg text-portfolio-charcoal hover:text-portfolio-forest hover:bg-portfolio-sage-light/50 border border-portfolio-border transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-portfolio-forest min-h-[44px] min-w-[44px] flex items-center justify-center"
+              aria-label={mobileMenuOpen ? 'Close navigation menu' : 'Open navigation menu'}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation-drawer"
+            >
+              {mobileMenuOpen ? <X className="w-5 h-5" /> : <Menu className="w-5 h-5" />}
+            </button>
+          </div>
+
+        </div>
+      </div>
+
+      {/* Mobile / Tablet Navigation Drawer */}
+      {mobileMenuOpen && (
+        <div
+          id="mobile-navigation-drawer"
+          className="fixed inset-0 top-16 sm:top-20 z-50 lg:hidden bg-portfolio-charcoal/40 backdrop-blur-sm animate-fadeIn"
+          onClick={() => setMobileMenuOpen(false)}
+        >
+          <div
+            className="bg-[#F7F7F2] border-b border-portfolio-border shadow-xl px-5 py-6 space-y-4 max-h-[85vh] overflow-y-auto"
+            onClick={(e) => e.stopPropagation()}
+          >
+            <div className="flex items-center justify-between pb-3 border-b border-portfolio-border">
+              <span className="text-xs font-mono uppercase tracking-widest text-portfolio-muted font-semibold">
+                Menu Navigation
+              </span>
+              <span className="text-xs font-mono text-portfolio-forest bg-portfolio-sage-light px-2 py-0.5 rounded font-medium">
+                Navigation
+              </span>
+            </div>
+
+            <div className="grid grid-cols-1 gap-1">
+              {navigationConfig.links.map((link) => {
+                const isActive = activeSection === link.sectionId;
+                return (
+                  <a
+                    key={link.name}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.sectionId)}
+                    className={`px-4 py-3 text-base font-medium rounded-lg transition-colors flex items-center justify-between ${
+                      isActive
+                        ? 'bg-portfolio-sage-light text-portfolio-forest font-semibold'
+                        : 'text-portfolio-charcoal hover:text-portfolio-forest hover:bg-portfolio-sage-light/50'
+                    }`}
+                  >
+                    <span>{link.name}</span>
+                    <ArrowRight className="w-4 h-4 text-portfolio-muted" />
+                  </a>
+                );
+              })}
+            </div>
+
+            <div className="pt-4 border-t border-portfolio-border space-y-2">
               <Button
                 variant="secondary"
                 size="md"
@@ -184,18 +219,7 @@ export const Navbar: React.FC<NavbarProps> = ({ onOpenResume }) => {
                 className="w-full justify-center"
                 icon={<FileText className="w-4 h-4 text-portfolio-forest" />}
               >
-                View Full Resume
-              </Button>
-              <Button
-                variant="primary"
-                size="md"
-                href="#contact"
-                onClick={(e?: React.MouseEvent<HTMLElement>) => {
-                  if (e) handleNavClick(e as any, 'contact');
-                }}
-                className="w-full justify-center"
-              >
-                Contact Atharva
+                View Full Resume Summary
               </Button>
             </div>
           </div>

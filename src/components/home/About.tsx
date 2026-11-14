@@ -4,11 +4,17 @@ import { aboutMeContent, personalInfo, educationData } from '../../data/portfoli
 import { SectionHeading } from '../ui/SectionHeading';
 
 export const About: React.FC = () => {
-  const pillarIcons = [
-    <Server className="w-5 h-5 text-portfolio-forest" />,
-    <Database className="w-5 h-5 text-portfolio-forest" />,
-    <Brain className="w-5 h-5 text-portfolio-forest" />
-  ];
+  const getPillarIcon = (idx: number) => {
+    switch (idx) {
+      case 0:
+        return <Server className="w-5 h-5 text-portfolio-forest" />;
+      case 1:
+        return <Database className="w-5 h-5 text-portfolio-forest" />;
+      case 2:
+      default:
+        return <Brain className="w-5 h-5 text-portfolio-forest" />;
+    }
+  };
 
   return (
     <section id="about" className="py-16 sm:py-24 border-t border-portfolio-border bg-white">
@@ -83,7 +89,7 @@ export const About: React.FC = () => {
               >
                 <div className="flex items-center gap-3 mb-2.5">
                   <div className="p-2 rounded-lg bg-white border border-portfolio-border group-hover:bg-portfolio-sage-light/50 transition-colors">
-                    {pillarIcons[idx]}
+                    {getPillarIcon(idx)}
                   </div>
                   <h3 className="font-bold text-base sm:text-lg text-portfolio-charcoal group-hover:text-portfolio-forest transition-colors">
                     {pillar.title}

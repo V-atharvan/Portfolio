@@ -16,7 +16,7 @@ export const personalInfo: PersonalInfo = {
   college: 'N. B. Navale Sinhgad College of Engineering, Solapur',
   location: 'Solapur, Maharashtra, India',
   email: 'atharva.vaddepalli.dev@gmail.com',
-  githubUrl: 'https://github.com/AtharvaVaddepalli',
+  githubUrl: 'https://github.com/V-atharvan',
   linkedinUrl: 'https://linkedin.com/in/atharva-vaddepalli',
   resumeDownloadUrl: '#resume-modal',
   interests: [
@@ -178,7 +178,7 @@ export const projectsData: ProjectDetail[] = [
         solutionLearned: 'Enforced unique composite constraints and strict DTO validation annotations in Spring Boot before reaching the persistence tier.'
       }
     ],
-    githubUrl: 'https://github.com/AtharvaVaddepalli/greensynth-platform',
+    githubUrl: 'https://github.com/V-atharvan/GreenSynth',
     liveDemoUrl: undefined,
     demoStatus: 'prototype',
     statusBadge: 'Active Research Project',
@@ -252,9 +252,9 @@ export const projectsData: ProjectDetail[] = [
         solutionLearned: 'Developed robust min-max and z-score normalization routines to ensure reliable algorithmic consistency across varied acquisition inputs.'
       }
     ],
-    githubUrl: 'https://github.com/AtharvaVaddepalli/neuroscope-3d',
-    liveDemoUrl: undefined,
-    demoStatus: 'research_phase',
+    githubUrl: 'https://github.com/V-atharvan/NeuroScope-3D',
+    liveDemoUrl: 'https://neuro-scope-3-d.vercel.app',
+    demoStatus: 'live',
     statusBadge: 'Medical Imaging Research',
     accentTag: 'Computer Vision & AI'
   },
@@ -294,9 +294,9 @@ export const projectsData: ProjectDetail[] = [
       ]
     },
     technologies: [
-      { category: 'Backend Core', items: ['Java', 'Spring Boot', 'REST APIs', 'Spring Security'] },
-      { category: 'Persistence', items: ['PostgreSQL', 'Hibernate', 'Relational Schemas'] },
-      { category: 'AI & Estimation Logic', items: ['Python Engine', 'NumPy', 'Scikit-learn (Price Trend Analysis)'] },
+      { category: 'Frontend & Mobile', items: ['Next.js', 'Flutter'] },
+      { category: 'Backend & Services', items: ['FastAPI', 'Python', 'Celery Asynchronous Tasks'] },
+      { category: 'Persistence', items: ['PostgreSQL', 'SQLAlchemy'] },
       { category: 'Tooling', items: ['Maven', 'Git', 'IntelliJ IDEA'] }
     ],
     myContributions: [
@@ -327,7 +327,7 @@ export const projectsData: ProjectDetail[] = [
         solutionLearned: 'Implemented polymorphic specification strategies and metadata key-value tables in PostgreSQL to support diverse structural types without schema breakage.'
       }
     ],
-    githubUrl: 'https://github.com/AtharvaVaddepalli/buildwise-ai',
+    githubUrl: undefined,
     liveDemoUrl: undefined,
     demoStatus: 'prototype',
     statusBadge: 'Software Prototype',
@@ -337,9 +337,10 @@ export const projectsData: ProjectDetail[] = [
     id: 'odyssey',
     slug: 'odyssey',
     title: 'ODYSSEY',
+    officialTitle: 'Odyssey – College-to-Company Talent Platform',
     subtitle: 'College-to-company skill-based matching and recruitment platform',
     shortDescription: 'A college-to-company talent platform designed to connect students, colleges and companies through skill-based matching and recruitment workflows.',
-    overview: 'ODYSSEY is a recruitment and placement management platform engineered to replace inefficient campus placement spreadsheets with a unified, transparent portal that bridges academic institutions, student job seekers, and hiring organizations.',
+    overview: 'ODYSSEY is a recruitment and placement management platform engineered to replace inefficient campus placement spreadsheets with a unified, transparent portal that bridges academic institutions, student job seekers, and hiring organizations. Pitched at E-Cell IIT Bombay Illuminate workshop and received team pitch recognition.',
     problemStatement: 'Campus placement cells struggle with fragmented communications, manual eligibility verification, and unstandardized resume tracking, while recruiting companies face difficulty filtering candidate cohorts based on verified skill competencies.',
     proposedSolution: 'A role-based web platform that manages verified student profiles, institutional verification workflows, job listing publishing, and algorithmic candidate filtering matching specific technical job requisitions.',
     technicalArchitecture: {
@@ -369,13 +370,13 @@ export const projectsData: ProjectDetail[] = [
       ]
     },
     technologies: [
-      { category: 'Backend Engine', items: ['Java 17', 'Spring Boot', 'Spring MVC', 'RESTful Services'] },
-      { category: 'Data & ORM', items: ['MySQL', 'Hibernate / JPA', 'Liquibase/Flyway'] },
-      { category: 'Security & Auth', items: ['Spring Security', 'JWT Tokenization', 'Role-Based Access Control'] },
-      { category: 'Tools', items: ['Maven', 'Git', 'IntelliJ IDEA', 'Postman'] }
+      { category: 'Backend Engine', items: ['Java 17', 'Spring Boot 3.2.3', 'Spring MVC', 'RESTful Services'] },
+      { category: 'Data & Containers', items: ['PostgreSQL 16', 'Hibernate / JPA', 'Docker'] },
+      { category: 'Security & Auth', items: ['Spring Security', 'JWT Tokenization', 'BCrypt Password Hashing'] },
+      { category: 'Frontend & AI Tools', items: ['React', 'Vite', 'Tailwind CSS', 'Gemini ATS matching'] }
     ],
     myContributions: [
-      'Engineered the core Spring Boot backend architecture and database schema in MySQL.',
+      'Engineered the core Spring Boot backend architecture and database schema in MySQL/PostgreSQL.',
       'Designed and documented REST APIs for student registration, job postings, and application state transitions.',
       'Built algorithmic candidate eligibility filtering matching minimum criteria, skill tags, and department streams.',
       'Implemented secure data validation preventing unauthorized profile modifications across different roles.'
@@ -385,7 +386,7 @@ export const projectsData: ProjectDetail[] = [
       'Job requisition posting system with custom eligibility criteria parameters',
       'Dynamic candidate shortlisting based on verified criteria and skill sets',
       'Application status tracking lifecycle (Applied, Shortlisted, Interviewed, Selected)',
-      'Relational database schema with foreign-key constraints and indexes in MySQL'
+      'Relational database schema with foreign-key constraints and indexes'
     ],
     plannedFeatures: [
       'Automated email notification dispatcher for interview rounds and application updates',
@@ -402,98 +403,113 @@ export const projectsData: ProjectDetail[] = [
         solutionLearned: 'Applied pessimistic/optimistic locking strategies and clean transactional boundaries in Spring to preserve state integrity under concurrent application submissions.'
       }
     ],
-    githubUrl: 'https://github.com/AtharvaVaddepalli/odyssey-platform',
+    githubUrl: undefined,
     liveDemoUrl: undefined,
     demoStatus: 'prototype',
-    statusBadge: 'Full-Stack Platform',
+    statusBadge: 'Award-Recognized Project',
     accentTag: 'Enterprise Architecture'
   }
 ];
 
 export const experienceData: ExperienceItem[] = [
   {
-    id: 'exp-tech-lead',
-    title: 'Student Technical Developer & Project Lead',
-    role: 'Lead Backend Developer',
-    organization: 'N. B. Navale Sinhgad College of Engineering',
-    period: '2024 - Present',
-    type: 'Leadership',
-    description: 'Leading student development initiatives focused on practical software systems, peer code reviews, and structured project architectures.',
-    keyContributions: [
-      'Mentored peers on Java object-oriented principles, Spring Boot fundamentals, and REST API conventions.',
-      'Spearheaded architectural design for academic software prototypes including GREENSYNTH and ODYSSEY.',
-      'Advocated for Git best practices, branch isolation, and structured commit messaging across team assignments.'
-    ],
-    technologies: ['Java', 'Spring Boot', 'PostgreSQL', 'Git']
-  },
-  {
-    id: 'exp-hackathon',
-    title: 'Technical Competitions & Hackathon Participant',
-    role: 'Backend Engineering & System Architect',
-    organization: 'Collegiate & Regional Hackathons',
-    period: '2023 - Present',
+    id: 'exp-ecell-illuminate',
+    title: 'Team Lead & Pitch Presenter (Odyssey)',
+    role: 'Lead Project Presenter',
+    organization: 'E-Cell IIT Bombay Illuminate Workshop',
+    period: 'Collegiate Workshop & Competition',
     type: 'Hackathon',
-    description: 'Participated in competitive hackathons conceptualizing and delivering functional backend systems under tight sprint deadlines.',
+    description: 'Participated in the intensive entrepreneurship, product design, and technical idea-pitch workshop conducted by E-Cell IIT Bombay. Led the student team that conceptualized and architected Odyssey.',
     keyContributions: [
-      'Engineered rapid-prototype REST APIs to power front-facing student applications in multi-day events.',
-      'Designed transactional schemas and entity relationships under strict time constraints.',
-      'Collaborated effectively in cross-functional teams combining frontend designers, mobile devs, and backend services.'
+      'Led the technical architecture pitch, explaining role-based authentication, student verification workflows, and skill-based matching.',
+      'Represented the team during the competitive pitch presentation before evaluation mentors.',
+      'Structured the core product concept bridging academic placement cells, candidates, and hiring companies.'
     ],
-    technologies: ['Java', 'Spring Boot', 'Python', 'REST APIs', 'SQL']
+    technologies: ['Java', 'Spring Boot', 'System Architecture', 'Pitch Strategy']
   },
   {
-    id: 'exp-academics',
-    title: 'Academic Software Development & Lab Projects',
+    id: 'exp-tedx-lead',
+    title: 'Creative & Design Lead',
+    role: 'Creative Lead',
+    organization: 'TEDx Sinhgad COE',
+    period: 'Collegiate Event Organization',
+    type: 'Leadership',
+    description: 'Served as Creative and Design Lead for TEDx Sinhgad COE, overseeing visual branding consistency and stage presentation aesthetics.',
+    keyContributions: [
+      'Led the creative team in establishing coherent typographic guidelines and color standards aligned with TEDx branding rules.',
+      'Designed presentation collateral, speaker promotional material, and stage visual assets.',
+      'Collaborated closely with stage logistics, media teams, and faculty coordinators to ensure smooth event execution.'
+    ],
+    technologies: ['Visual Branding', 'Design Systems', 'Team Leadership']
+  },
+  {
+    id: 'exp-aicte-ide',
+    title: 'Student Participant & Technical Contributor',
+    role: 'Innovation Contributor',
+    organization: 'AICTE Innovation, Design and Entrepreneurship (IDE) Bootcamp',
+    period: 'National Innovation Initiative',
+    type: 'College Activity',
+    description: 'Selected to participate in the AICTE IDE Bootcamp, focusing on design thinking, problem discovery, rapid software prototyping, and user-centric solution engineering.',
+    keyContributions: [
+      'Engaged in collaborative problem-solving sprints tackling real-world operational challenges.',
+      'Applied design thinking frameworks to decompose user friction points into actionable technical specifications.',
+      'Collaborated in multi-disciplinary teams across structured design reviews.'
+    ],
+    technologies: ['Design Thinking', 'Rapid Prototyping', 'Product Engineering']
+  },
+  {
+    id: 'exp-technical-dev',
+    title: 'Java Backend & Research Software Developer',
     role: 'Student Developer',
     organization: 'Department of Computer Science & Engineering',
     period: '2022 - Present',
     type: 'Development',
-    description: 'Built hands-on curriculum and self-directed systems demonstrating core computer science concepts, algorithms, and database design.',
+    description: 'Hands-on technical engineering focused on modern Java architectures, Spring Boot services, relational database persistence, and medical/scientific analytics prototypes.',
     keyContributions: [
-      'Implemented relational schemas, normalization forms (3NF/BCNF), and stored queries in MySQL and PostgreSQL.',
-      'Explored machine learning workflows using Python data science libraries for scientific data analysis.',
-      'Maintained consistent documentation, architecture diagrams, and clean code standards for laboratory submissions.'
+      'Architected REST API backends and normalized PostgreSQL/MySQL schemas for GreenSynth and Odyssey.',
+      'Engineered medical image slice preprocessing and volumetric segmentation routines in Python for NeuroScope 3D.',
+      'Maintained consistent version control, clean commit histories, and modular repository structures on GitHub.'
     ],
-    technologies: ['Java', 'Python', 'SQL', 'Algorithms', 'Data Structures']
+    technologies: ['Java', 'Spring Boot', 'Python', 'FastAPI', 'PostgreSQL', 'Git']
   }
 ];
 
 export const achievementsData: AchievementItem[] = [
   {
-    id: 'ach-hackathon-1',
-    title: 'Hackathon Finalist / Selected Team Contributor',
+    id: 'ach-ecell-illuminate',
+    title: 'Team Pitch Recognition — Odyssey Platform',
     category: 'Hackathon',
-    issuer: 'Collegiate Technical Competition',
-    dateOrPeriod: '2024',
-    description: 'Recognized for developing an innovative prototype architecture addressing real-world operational challenges through clean backend engineering.',
-    isEditablePlaceholder: true
+    issuer: 'E-Cell IIT Bombay Illuminate Workshop',
+    dateOrPeriod: '2023 - 2024',
+    description: 'Earned team pitch recognition during the competitive idea presentation round for Odyssey, presenting a structured skill-based campus talent platform to workshop evaluators.',
+    isEditablePlaceholder: false
   },
   {
-    id: 'ach-project-recog',
-    title: 'Academic Project Excellence Recognition',
-    category: 'Project Recognition',
-    issuer: 'N. B. Navale Sinhgad College of Engineering',
-    dateOrPeriod: '2024',
-    description: 'Commended by department faculty for rigorous technical architecture and functional implementation of research-oriented software solutions.',
-    isEditablePlaceholder: true
+    id: 'ach-tedx-lead',
+    title: 'Creative & Design Lead Appointment',
+    category: 'Leadership',
+    issuer: 'TEDx Sinhgad COE',
+    dateOrPeriod: '2023 - 2024',
+    description: 'Appointed to lead the design and visual branding team for TEDx Sinhgad COE, successfully managing end-to-end design deliverables and visual identity standards.',
+    isEditablePlaceholder: false
+  },
+  {
+    id: 'ach-aicte-ide',
+    title: 'AICTE IDE Bootcamp Selection & Participation',
+    category: 'Technical Competition',
+    issuer: 'Ministry of Education & AICTE',
+    dateOrPeriod: '2023 - 2024',
+    description: 'Selected to represent the college at the national Innovation, Design and Entrepreneurship (IDE) Bootcamp, completing structured workshops in product validation and rapid prototyping.',
+    isEditablePlaceholder: false
   },
   {
     id: 'ach-cert-java',
-    title: 'Java Backend & Spring Boot Development Studies',
+    title: 'Java Backend & Spring Framework Foundations',
     category: 'Certification',
-    issuer: 'Independent Technical Coursework & Verification',
-    dateOrPeriod: '2023 - 2024',
-    description: 'Completed comprehensive practical training in Java OOP, Spring Boot REST services, Hibernate/JPA persistence, and SQL relational databases.',
-    isEditablePlaceholder: true
-  },
-  {
-    id: 'ach-cert-ml',
-    title: 'Foundational Machine Learning with Python',
-    category: 'Certification',
-    issuer: 'Technical Studies & Applied Project Labs',
-    dateOrPeriod: '2023 - 2024',
-    description: 'Demonstrated proficiency in scientific computing with NumPy, data analysis with Pandas, and predictive modeling using Scikit-learn.',
-    isEditablePlaceholder: true
+    issuer: 'Academic Curriculum & Independent Technical Labs',
+    dateOrPeriod: '2022 - Present',
+    description: 'Completed comprehensive academic coursework and practical laboratory projects in Object-Oriented Programming, Data Structures, Relational Database Management Systems, and Spring Boot REST API engineering.',
+    isEditablePlaceholder: false
   }
 ];
 
